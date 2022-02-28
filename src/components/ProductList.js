@@ -45,7 +45,7 @@ export const ProductList = () => {
     
         return fetch("http://localhost:8088/purchases", fetchOption)
             .then(() => {
-                history.push("/products")
+                history.push("/orders")
             })
     }
 
