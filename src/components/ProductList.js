@@ -18,7 +18,7 @@ export const ProductList = () => {
 
 
 
-
+//&ensp; adds a space in html
 
     return (
         <>
@@ -28,7 +28,10 @@ export const ProductList = () => {
                 (productObject) => {
                     return <p key={`product--${productObject.id}`}>{productObject.candyName} {productObject.price}
                     <br></br>
-                    {productObject.candyCategory?.categoryName}</p>
+                    {productObject.candyCategory?.categoryName}
+                    &ensp;
+                    <button onClick={() => {}}>purchase</button>
+                    </p>
                     //why is the optional chain operator a bad idea?
                     //A:
                 }
