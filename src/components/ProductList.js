@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from "react"
+import { useHistory } from "react-router-dom"
+
+
+
+
+
+
+
+
+
+
+
 
 
 export const ProductList = () => {
-
+    const history = useHistory()
 
     const [products, setProducts] = useState([])
     useEffect(
@@ -16,7 +28,26 @@ export const ProductList = () => {
         []
     )
 
-
+    const purchaseCandy = (e) => {
+        e.preventDefault()
+        const newCandy = {
+           productId: parseInt(e.target.value),
+           customerId: parseInt(localStorage.getItem("kandy_customer"))
+        }
+    
+        const fetchOption = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newCandy)
+        }
+    
+        return fetch("http://localhost:8088/purchases", fetchOption)
+            .then(() => {
+                history.push("/products")
+            })
+    }
 
 //&ensp; adds a space in html
 
@@ -30,7 +61,7 @@ export const ProductList = () => {
                     <br></br>
                     {productObject.candyCategory?.categoryName}
                     &ensp;
-                    <button onClick={() => {}}>purchase</button>
+                    <button onClick={purchaseCandy} value={productObject.id}>purchase</button>
                     </p>
                     //why is the optional chain operator a bad idea?
                     //A:
